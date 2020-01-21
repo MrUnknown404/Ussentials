@@ -1,0 +1,15 @@
+[
+{
+  "modid": "ussentials",
+  "name": "Ussentials",
+  "description": "A Server utility mod that adds random commands (Pronounced yoo-ssentials/you-ssentials)",
+  "version": "1.0.0",
+  "mcversion": "[1.12.2]",
+  "url": "https://github.com/MrUnknown404/Ussentials",
+  "updateUrl": "",
+  "authorList": ["-Unknown-"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": []
+}
+]
