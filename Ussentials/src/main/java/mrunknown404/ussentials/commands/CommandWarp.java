@@ -55,10 +55,10 @@ public class CommandWarp extends CommandBase {
 	
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-		return args.length == 1 ? getListOfStringsMatchingLastWord(args, convert(server, sender)) : Collections.emptyList();
+		return args.length == 1 ? getListOfStringsMatchingLastWord(args, convert()) : Collections.emptyList();
 	}
 	
-	public static List<String> convert(MinecraftServer server, ICommandSender sender) {
+	public static List<String> convert() {
 		List<String> strs = new ArrayList<String>();
 		for (LocationInfo i : WarpHandler.getWarps()) {
 			strs.add(i.name);

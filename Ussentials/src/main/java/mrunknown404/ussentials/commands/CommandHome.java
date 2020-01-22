@@ -58,10 +58,10 @@ public class CommandHome extends CommandBase {
 	
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-		return args.length == 1 ? getListOfStringsMatchingLastWord(args, convert(server, sender)) : Collections.emptyList();
+		return args.length == 1 ? getListOfStringsMatchingLastWord(args, convert(sender)) : Collections.emptyList();
 	}
 	
-	public static List<String> convert(MinecraftServer server, ICommandSender sender) {
+	public static List<String> convert(ICommandSender sender) {
 		List<String> strs = new ArrayList<String>();
 		for (LocationInfo i : HomeHandler.getPlayerHomes(((EntityPlayerMP) sender).getGameProfile().getId())) {
 			strs.add(i.name);

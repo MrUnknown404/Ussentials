@@ -45,6 +45,6 @@ public class CommandDelHome extends CommandBase {
 	
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-		return args.length == 1 ? getListOfStringsMatchingLastWord(args, CommandHome.convert(server, sender)) : Collections.emptyList();
+		return args.length == 1 ? getListOfStringsMatchingLastWord(args, CommandHome.convert(sender)) : Collections.emptyList();
 	}
 }
