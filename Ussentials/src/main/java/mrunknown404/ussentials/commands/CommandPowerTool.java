@@ -21,11 +21,6 @@ public class CommandPowerTool extends CommandBase {
 	}
 	
 	@Override
-	public int getRequiredPermissionLevel() {
-		return 3;
-	}
-	
-	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (!(sender instanceof EntityPlayerMP)) {
 			throw new CommandException(Main.NOT_PLAYER_ERROR);

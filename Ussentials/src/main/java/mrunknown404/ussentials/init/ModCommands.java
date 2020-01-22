@@ -6,7 +6,9 @@ import java.util.List;
 
 import mrunknown404.ussentials.commands.CommandBroadcast;
 import mrunknown404.ussentials.commands.CommandDelHome;
+import mrunknown404.ussentials.commands.CommandDelWarp;
 import mrunknown404.ussentials.commands.CommandEnch;
+import mrunknown404.ussentials.commands.CommandEnderChest;
 import mrunknown404.ussentials.commands.CommandFeed;
 import mrunknown404.ussentials.commands.CommandFireball;
 import mrunknown404.ussentials.commands.CommandHat;
@@ -21,12 +23,15 @@ import mrunknown404.ussentials.commands.CommandRelore;
 import mrunknown404.ussentials.commands.CommandRename;
 import mrunknown404.ussentials.commands.CommandSayAs;
 import mrunknown404.ussentials.commands.CommandSetHome;
+import mrunknown404.ussentials.commands.CommandSetWarp;
 import mrunknown404.ussentials.commands.CommandSkull;
 import mrunknown404.ussentials.commands.CommandSmite;
 import mrunknown404.ussentials.commands.CommandSuicide;
 import mrunknown404.ussentials.commands.CommandTop;
 import mrunknown404.ussentials.commands.CommandTpAll;
 import mrunknown404.ussentials.commands.CommandUssentials;
+import mrunknown404.ussentials.commands.CommandWarp;
+import mrunknown404.ussentials.commands.CommandWarps;
 import net.minecraft.command.CommandBase;
 
 public class ModCommands {
@@ -50,11 +55,16 @@ public class ModCommands {
 	public static final CommandBase SKULL = addCommand(new CommandSkull());
 	public static final CommandBase HAT = addCommand(new CommandHat());
 	public static final CommandBase SUICIDE = addCommand(new CommandSuicide());
+	public static final CommandBase HOME = addCommand(new CommandHome());
+	public static final CommandBase HOMES = addCommand(new CommandHomes());
 	public static final CommandBase SET_HOME = addCommand(new CommandSetHome());
 	public static final CommandBase DEL_HOME = addCommand(new CommandDelHome());
-	public static final CommandBase HOMES = addCommand(new CommandHomes());
-	public static final CommandBase HOME = addCommand(new CommandHome());
 	public static final CommandBase RELORE = addCommand(new CommandRelore());
+	public static final CommandBase WARP = addCommand(new CommandWarp());
+	public static final CommandBase WARPS = addCommand(new CommandWarps());
+	public static final CommandBase SET_WARP = addCommand(new CommandSetWarp());
+	public static final CommandBase DEL_WARP = addCommand(new CommandDelWarp());
+	public static final CommandBase ENDER_CHEST = addCommand(new CommandEnderChest());
 	
 	private static CommandBase addCommand(CommandBase cmd) {
 		COMMANDS.add(cmd);

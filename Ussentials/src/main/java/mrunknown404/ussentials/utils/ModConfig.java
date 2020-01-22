@@ -20,4 +20,8 @@ public class ModConfig {
 	@Config.Comment("The max amount of commands that '/ussentials help' prints")
 	@Config.RangeInt(min = 3, max = 32)
 	public static int homesPrintLength = 7;
+	
+	@Config.Comment("The max amount of warps that '/warps' prints")
+	@Config.RangeInt(min = 3, max = 32)
+	public static int warpsPrintLength = 7;
 }

@@ -8,7 +8,7 @@ import mrunknown404.unknownlibs.utils.ColorUtils;
 import mrunknown404.unknownlibs.utils.MathUtils;
 import mrunknown404.ussentials.Main;
 import mrunknown404.ussentials.utils.HomeHandler;
-import mrunknown404.ussentials.utils.HomeInfo;
+import mrunknown404.ussentials.utils.LocationInfo;
 import mrunknown404.ussentials.utils.ModConfig;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -30,8 +30,8 @@ public class CommandHomes extends CommandBase {
 	}
 	
 	@Override
-	public int getRequiredPermissionLevel() {
-		return 0;
+	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+		return true;
 	}
 	
 	@Override
@@ -49,12 +49,12 @@ public class CommandHomes extends CommandBase {
 			throw new CommandException("You don't have any homes!");
 		}
 		
-		List<HomeInfo> homes = new ArrayList<HomeInfo>();
-		for (HomeInfo entry : HomeHandler.getPlayerHomes(pl.getGameProfile().getId())) {
+		List<LocationInfo> homes = new ArrayList<LocationInfo>();
+		for (LocationInfo entry : HomeHandler.getPlayerHomes(pl.getGameProfile().getId())) {
 			homes.add(entry);
 		}
 		
-		homes.sort(Comparator.comparing(HomeInfo::getName));
+		homes.sort(Comparator.comparing(LocationInfo::getName));
 		
 		if (args.length == 0) {
 			sender.sendMessage(new TextComponentString(""));
@@ -62,7 +62,7 @@ public class CommandHomes extends CommandBase {
 				sender.sendMessage(new TextComponentString(ColorUtils.addColor("&eHome: " + homes.get(i).name)));
 			}
 			
-			sender.sendMessage(new TextComponentString(ColorUtils.addColor("&aPage 0/" + MathUtils.floor(homes.size() / ModConfig.homesPrintLength))));
+			sender.sendMessage(new TextComponentString(ColorUtils.addColor("&aPage 1/" + (1 + MathUtils.floor(homes.size() / ModConfig.homesPrintLength)))));
 		} else if (args.length == 1) {
 			try {
 				int page = Integer.parseInt(args[0]) - 1;
@@ -75,7 +75,7 @@ public class CommandHomes extends CommandBase {
 					sender.sendMessage(new TextComponentString(ColorUtils.addColor("&eHome: " + homes.get(i).name)));
 				}
 				
-				sender.sendMessage(new TextComponentString(ColorUtils.addColor("&aPage " + args[0] + "/" + MathUtils.floor(homes.size() / ModConfig.homesPrintLength))));
+				sender.sendMessage(new TextComponentString(ColorUtils.addColor("&aPage " + args[0] + "/" + (1 + MathUtils.floor(homes.size() / ModConfig.homesPrintLength)))));
 			} catch (NumberFormatException e) {
 				throw new CommandException(getUsage(sender));
 			}

@@ -21,19 +21,19 @@ import net.minecraftforge.common.DimensionManager;
 
 public class HomeHandler {
 	/** Don't get directly use {@link HomeHandler#getHomes()} */
-	private static Map<UUID, List<HomeInfo>> homes = new HashMap<UUID, List<HomeInfo>>();
+	private static Map<UUID, List<LocationInfo>> homes = new HashMap<UUID, List<LocationInfo>>();
 	
 	public static void setHome(EntityPlayerMP player, String name) {
 		if (doesPlayerHaveAvailableHomes(player.getGameProfile().getId())) {
-			for (HomeInfo info : getHomes().get(player.getGameProfile().getId())) {
+			for (LocationInfo info : getHomes().get(player.getGameProfile().getId())) {
 				if (info.name.equalsIgnoreCase(name)) {
 					player.sendMessage(new TextComponentString(ColorUtils.addColor("&cYou already have a home with that name!")));
 					return;
 				}
 			}
 			
-			List<HomeInfo> l = getHomes().get(player.getGameProfile().getId());
-			l.add(new HomeInfo(name, player));
+			List<LocationInfo> l = getHomes().get(player.getGameProfile().getId());
+			l.add(new LocationInfo(name, player));
 			getHomes().put(player.getGameProfile().getId(), l);
 			
 			player.sendMessage(new TextComponentString(ColorUtils.addColor("&aSuccessfully set home : " + name)));
@@ -45,8 +45,8 @@ public class HomeHandler {
 	
 	public static void delHome(EntityPlayerMP player, String name) {
 		if (getHomes().containsKey(player.getGameProfile().getId())) {
-			HomeInfo iinfo = null;
-			for (HomeInfo info : getPlayerHomes(player.getGameProfile().getId())) {
+			LocationInfo iinfo = null;
+			for (LocationInfo info : getPlayerHomes(player.getGameProfile().getId())) {
 				if (info.name.equalsIgnoreCase(name)) {
 					iinfo = info;
 					break;
@@ -67,16 +67,16 @@ public class HomeHandler {
 		return getPlayerHomes(player).size() <= ModConfig.maxHomes;
 	}
 	
-	public static List<HomeInfo> getPlayerHomes(UUID player) {
+	public static List<LocationInfo> getPlayerHomes(UUID player) {
 		if (!getHomes().containsKey(player)) {
-			getHomes().put(player, new ArrayList<HomeInfo>());
+			getHomes().put(player, new ArrayList<LocationInfo>());
 			saveToFile();
 		}
 		
 		return getHomes().get(player);
 	}
 	
-	private static Map<UUID, List<HomeInfo>> getHomes() {
+	private static Map<UUID, List<LocationInfo>> getHomes() {
 		if (homes.isEmpty()) {
 			readFromFile();
 		}
@@ -109,14 +109,14 @@ public class HomeHandler {
 		
 		try {
 			FileReader fr = new FileReader(f);
-			homes = g.fromJson(fr, new TypeToken<Map<UUID, List<HomeInfo>>>() {}.getType());
+			homes = g.fromJson(fr, new TypeToken<Map<UUID, List<LocationInfo>>>() {}.getType());
 			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		if (homes == null) {
-			homes = new HashMap<UUID, List<HomeInfo>>();
+			homes = new HashMap<UUID, List<LocationInfo>>();
 			saveToFile();
 		}
 	}

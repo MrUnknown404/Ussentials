@@ -28,11 +28,6 @@ public class CommandEnch extends CommandBase {
 	}
 	
 	@Override
-	public int getRequiredPermissionLevel() {
-		return 3;
-	}
-	
-	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (args.length != 2) {
 			throw new CommandException(getUsage(sender));

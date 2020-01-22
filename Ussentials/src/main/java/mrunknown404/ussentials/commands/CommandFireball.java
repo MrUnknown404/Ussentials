@@ -25,11 +25,6 @@ public class CommandFireball extends CommandBase {
 	}
 	
 	@Override
-	public int getRequiredPermissionLevel() {
-		return 3;
-	}
-	
-	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (args.length != 0) {
 			throw new CommandException(getUsage(sender));

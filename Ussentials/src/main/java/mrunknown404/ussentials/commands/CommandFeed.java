@@ -26,11 +26,6 @@ public class CommandFeed extends CommandBase {
 	}
 	
 	@Override
-	public int getRequiredPermissionLevel() {
-		return 3;
-	}
-	
-	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (args.length >= 2) {
 			throw new CommandException(getUsage(sender));
@@ -45,6 +40,11 @@ public class CommandFeed extends CommandBase {
 			toFeed = server.getPlayerList().getPlayerByUsername(args[0]);
 		} else {
 			toFeed = (EntityPlayerMP) sender;
+			
+			if (toFeed == null) {
+				sender.sendMessage(new TextComponentString(ColorUtils.addColor("&cCould not find player!")));
+				return;
+			}
 		}
 		
 		

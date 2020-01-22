@@ -24,11 +24,6 @@ public class CommandJoin extends CommandBase {
 	}
 	
 	@Override
-	public int getRequiredPermissionLevel() {
-		return 3;
-	}
-	
-	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		String name = sender.getName();
 		if (args.length == 1) {

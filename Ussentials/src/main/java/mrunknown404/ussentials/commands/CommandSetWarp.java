@@ -1,29 +1,23 @@
 package mrunknown404.ussentials.commands;
 
 import mrunknown404.ussentials.Main;
-import mrunknown404.ussentials.utils.HomeHandler;
-import mrunknown404.ussentials.utils.ModConfig;
+import mrunknown404.ussentials.utils.WarpHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
-public class CommandSetHome extends CommandBase {
+public class CommandSetWarp extends CommandBase {
 	
 	@Override
 	public String getName() {
-		return "sethome";
+		return "setwarp";
 	}
 	
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return "/sethome [name]";
-	}
-	
-	@Override
-	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return true;
+		return "/setwarp [name]";
 	}
 	
 	@Override
@@ -32,10 +26,8 @@ public class CommandSetHome extends CommandBase {
 			throw new CommandException(getUsage(sender));
 		} else if (!(sender instanceof EntityPlayerMP)) {
 			throw new CommandException(Main.NOT_PLAYER_ERROR);
-		} else if (ModConfig.maxHomes == 0) {
-			throw new CommandException("Homes are disabled");
 		}
 		
-		HomeHandler.setHome((EntityPlayerMP) sender, args[0]);
+		WarpHandler.setWarp((EntityPlayerMP) sender, args[0]);
 	}
 }

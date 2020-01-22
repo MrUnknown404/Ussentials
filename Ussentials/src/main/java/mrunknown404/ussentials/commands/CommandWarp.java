@@ -5,9 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import mrunknown404.ussentials.Main;
-import mrunknown404.ussentials.utils.HomeHandler;
 import mrunknown404.ussentials.utils.LocationInfo;
-import mrunknown404.ussentials.utils.ModConfig;
+import mrunknown404.ussentials.utils.WarpHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -15,16 +14,16 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 
-public class CommandHome extends CommandBase {
+public class CommandWarp extends CommandBase {
 	
 	@Override
 	public String getName() {
-		return "home";
+		return "warp";
 	}
 	
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return "/home [name]";
+		return "/warp [name]";
 	}
 	
 	@Override
@@ -38,13 +37,11 @@ public class CommandHome extends CommandBase {
 			throw new CommandException(getUsage(sender));
 		} else if (!(sender instanceof EntityPlayerMP)) {
 			throw new CommandException(Main.NOT_PLAYER_ERROR);
-		} else if (ModConfig.maxHomes == 0) {
-			throw new CommandException("Homes are disabled");
 		}
 		
 		EntityPlayerMP pl = ((EntityPlayerMP) sender);
 		
-		for (LocationInfo info : HomeHandler.getPlayerHomes(pl.getGameProfile().getId())) {
+		for (LocationInfo info : WarpHandler.getWarps()) {
 			if (info.name.equalsIgnoreCase(args[0])) {
 				if (pl.dimension != info.dimensionID) {
 					pl.changeDimension(info.dimensionID);
@@ -63,7 +60,7 @@ public class CommandHome extends CommandBase {
 	
 	public static List<String> convert(MinecraftServer server, ICommandSender sender) {
 		List<String> strs = new ArrayList<String>();
-		for (LocationInfo i : HomeHandler.getPlayerHomes(((EntityPlayerMP) sender).getGameProfile().getId())) {
+		for (LocationInfo i : WarpHandler.getWarps()) {
 			strs.add(i.name);
 		}
 		
