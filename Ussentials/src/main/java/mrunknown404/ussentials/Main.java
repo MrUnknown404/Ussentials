@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = Main.MOD_ID, serverSideOnly = true, useMetadata = true, dependencies = "required-after:unknownlibs@1.0.1", acceptableRemoteVersions = "*")
+@Mod(modid = Main.MOD_ID, serverSideOnly = true, useMetadata = true, dependencies = "required-after:unknownlibs@[1.0.1,)", acceptableRemoteVersions = "*")
 public class Main {
 	public static final String MOD_ID = "ussentials", NOT_PLAYER_ERROR = "That command can only be used like that as a player";
 	
